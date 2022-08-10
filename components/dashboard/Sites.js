@@ -1,6 +1,9 @@
 import { FiPlus } from "react-icons/fi";
 
+
 const Sites=()=>{
+
+    
     return(
         <div className="Sites">
             <div className="sitesWrapper">
@@ -8,7 +11,9 @@ const Sites=()=>{
                 <div className="card">
                     <div className="create">
                         {/* <FiPlus style={{color:'#282C34',fontSize:'40px'}}/><br/> */}
-                        <button>Add New Site</button>
+                        <button>
+                            <a href="/sites/create">Add New Site &or;</a>
+                        </button>
                     </div>
                     <div className="siteList">
                         <h4>Deployed Sites</h4>

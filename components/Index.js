@@ -7,8 +7,8 @@ const Index=()=>{
             <div className="first border">
                 <div className="intro">
                     <h1>ProJits.com</h1>
-                    <h3>Generate a site for your project</h3>
-                    <h4>You get five subdomains per account.Completely free</h4>
+                    <h3>Create Websites for Your Projects</h3>
+                    <h4>You get 5 sites per account.Completely free</h4>
                     <div className="buttons">
                         <button className="register"><a href="/register">Get Started</a></button>
                         <button><a href="/tutorials">Tutorials</a></button>
@@ -22,24 +22,27 @@ const Index=()=>{
                 {`
                      .first{
                        display:grid;
-                       grid-template-columns:50% 50%;
-                       padding:50px; 
+                       grid-template-columns:60% 40%;
+                       padding:50px;
                        background-color:#282C34;
                        color:white;
+                       height:480px;
                     }
                    .intro{
-                        
+
                     }
                     .intro h1{
-                        font-size:3em;
+                        font-size:2.4em;
                         color:#61DAFB;
                         letter-spacing:5px;
                     }
                     .intro h3{
-                        font-size:2em;
+                        font-size:1.8em;
+                        letter-spacing:2px;
                     }
                     .intro h4{
-                        font-size:1.5em;
+                        font-size:1.2em;
+                        letter-spacing:3px;
                     }
                     .buttons{
                         display:flex;
@@ -70,7 +73,14 @@ const Index=()=>{
                         font-weight:bold;
                     }
 
-                    
+                    @media only screen and (max-width: 800px) {
+                        .first{
+                            display:grid;
+                            grid-template-columns:80% 20%;
+                        }
+                    }
+
+
                 `}
             </style>
         </div>

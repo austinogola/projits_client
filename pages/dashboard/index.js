@@ -6,7 +6,7 @@ import {useState} from 'react'
 
 const Dashboard=()=>{
 
-    const [showPage,setShowPage]=useState('Home')
+    const [showPage,setShowPage]=useState('Your Sites')
 
     const changePage=(e)=>{
         setShowPage(e.target.textContent)
