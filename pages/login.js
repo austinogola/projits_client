@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import { useState } from 'react'
 import { useRouter } from "next/router"
+import Footer from "../components/Footer";
 
 
 const Login=()=>{
@@ -62,7 +63,7 @@ const handleSubmit=async(e)=>{
       <Navbar/>
       <div className="formWrapper">
         <form action="" onSubmit={handleSubmit}>
-          <h2>Login to account</h2>
+          <h2>Login</h2>
           {err?<div className="errorMessage">
                         <p>{err}</p>
                     </div>:null}
@@ -72,44 +73,55 @@ const handleSubmit=async(e)=>{
           </div>
           <div>
             <label htmlFor="password">Password</label><br />
-            <input onChange={handleChange} type="text" name="password" required/>
+            <input onChange={handleChange} type="password" name="password" required/>
           </div>
           <div className="loginBtn">
             <button type="submit">Login</button>
           </div>
-          <div>
+          <div className="no">
             <h5>No account? <a href="/register">Signup</a></h5>
           </div>
         </form>
       </div>
+      <Footer/>
 
       <style jsx>
         {`
           .formWrapper{
             display:flex;
-            padding-top:50px;
-            padding-bottom:50px;
+            padding-top:40px;
+            padding-bottom:100px;
             justify-content:center;
             background-color:#282C34;
             min-height:400px;
           }
           form{
             background-color:white;
-            width:320px;
-            text-align:center;
+            width:40%;
+            text-align:left;
             border-radius:5px;
-
+            padding:24px;
+            padding-left:40px;
+            padding-right:40px;
           }
           input{
             height:30px;
             outline:none;
-            border:#282C34 2px solid;
-            border-radius:5px;
-            width:80%;
+            border:none;
+            border-bottom:#282C34 2px solid;
+            border-radius:1px;
+            width:100%;
+            margin-bottom:10px;
+            font-size:16px;
+            letter-spacing:2px;
+          }
+          input[type=password]{
+            letter-spacing:3px;
           }
           .loginBtn{
-            margin:20px;
-
+            margin-top:15px;
+            display:flex;
+            justify-content:center;
           }
           button{
             width:40%;
@@ -120,6 +132,17 @@ const handleSubmit=async(e)=>{
             border-radius:5px;
             cursor:pointer;
 
+          }
+          button[type=submit]{
+            height:40px;
+          }
+          .no{
+            display:flex;
+            justify-content:center;
+            align-items:start;
+          }
+          label{
+            font-size:12px;
           }
           a{
             color:#61DAFB;

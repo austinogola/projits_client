@@ -6,28 +6,33 @@ const Second=()=>{
     <div className='Second'>
       <div className='secondTitle'>
         <div className='title'>
-          <p>From Source to Live.In 3 Steps</p>
+          <p>From Code to Live.In 3 Steps</p>
         </div>
       </div>
       <div className="secondWrapper">
-        <div>
-          <div className="Logo">
-            <Step/>
+        <div className='steps'>
+          <div>
+            <div className="Logo">
+              <Step 
+                title='Select Site Name'
+              />
+            </div>
           </div>
+          
+          <div>
+            <div className="Logo">
+              <Step title="Provide Code"/>
+            </div>
+          </div>
+
+          <div>
+            <div className="Logo">
+              <Step title='Launch'/>
+            </div>
+          </div>
+
         </div>
         
-        <div>
-          <div className="Logo">
-            <Step/>
-          </div>
-        </div>
-
-        <div>
-          <div className="Logo">
-            <Step/>
-          </div>
-        </div>
-
       </div>
 
       <style jsx>{`
@@ -43,15 +48,24 @@ const Second=()=>{
           letter-spacing:3px;
         }
         .secondWrapper{
-          display:grid;
-          grid-template-columns:1fr 1fr 1fr;
-          grid-gap:10px;
-          height:300px;
+          height:600px;
           padding-left:50px;
           padding-right:50px;
+          display:flex;
+          justify-content:center;
         }
         .secondWrapper>div{
           
+        }
+        .steps{
+          width:80%;
+          display:flex;
+          justify-content:center;
+        }
+        .steps>div{
+          
+          padding:20px;
+          width:33%;
         }
 
         `}</style>

@@ -4,6 +4,7 @@ import { useState , useEffect} from "react"
 import { DiGithubBadge} from "react-icons/di";
 import { FiGitlab} from "react-icons/fi";
 import {useRouter} from 'next/router'
+import Footer from "../../../components/Footer";
 
 const Create=()=>{
     const [sub,setSub]=useState('example')
@@ -17,45 +18,6 @@ const Create=()=>{
 
     const code=router.query.code
 
-    const handleChange=(e)=>{
-        e.preventDefault()
-        const value=e.target.value
-        setSub(value)
-
-         if(value.length==0){
-            setAvailable('no')
-        }else{
-            checkSub(value)
-        }
-
-
-    }
-
-    const saveToFlie=()=>{
-        
-    }
-
-
-
-    const handleGitHub= async(e)=>{
-        e.preventDefault()
-    
-        let params=`client_id=c1cea1f86311cb776671&
-        redirect_uri=http://localhost:3000/sites/create/choose-repo&
-        login&scope=repo&allow_signup=true&state='gfh678jjjkghu899`
-        // fetch(`https://github.com/login/oauth/authorize?${params}`,{ http://localhost:3000/sites/create
-        //     method:'GET'
-
-        // }).then(async res=>{
-        //     const response=await res.text()
-        //     // const body=response.getReader()
-        //     // console.log(body);
-        //     // const body=await res.body.getReader()
-        //     // console.log(body);
-        // })
-        const fulUrl=`https://github.com/login/oauth/authorize?${params}`
-        window.open(fulUrl,'_blank')
-    }
 
 
     const checkSub=async(val)=>{
@@ -83,34 +45,35 @@ const Create=()=>{
 
     }
 
-    if(code){
-        let params={
-            'client_id':'c1cea1f86311cb776671',
-            'client_secret':'a1ba64f46e315a20c2bc6379db354a3e190325d8',
-            'code':code
+    let params={
+        'client_id':'c1cea1f86311cb776671',
+        'client_secret':'a1ba64f46e315a20c2bc6379db354a3e190325d8',
+        'code':code,
+        'redirect_uri':'http://localhost:3000/sites/create/choose-repo'
+
+    }
+
+    let query=Object.keys(params)
+                .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+                .join('&')
+
+    let url=`https://github.com/login/oauth/access_token?${query}`
+    console.log(url);
+    
+    fetch(url,{
+        method:"POST",
+        headers:{
+            'Accept': 'application/json'
         }
 
-        let query=Object.keys(params)
-                    .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
-                    .join('&')
-
-        let url=`https://github.com/login/oauth/access_token?${query}`
-        console.log(url);
+    }).then(async res=>{
         
-        fetch(url,{
-            method:"POST",
-            headers:{
-                'Accept': 'application/json'
-            }
-
-        }).then(async res=>{
-            
-            const response=await res.json()
-            const access_token=response['access_token']
-            console.log(access_token);
-            getRepos(access_token)
-        })
-    }
+        const response=await res.json()
+        console.log(response);
+        const access_token=response['access_token']
+        console.log(access_token);
+        getRepos(access_token)
+    })
 
     const getRepos=(access_token)=>{
         console.log(access_token);
@@ -181,13 +144,13 @@ const Create=()=>{
                         {
                         repos?
                         <div className="allRepos">
-                            <h4>{username}</h4>
+                            <h4>Your repos</h4>
                             {repos.map(repo=>{
                             return(
                                 <div key={repo.id} className='repos'>
                                     <div className="repoDiv">
                                         <p className="repoName">
-                                            <span className="username">{username}/</span>
+                                            <span className="username">/</span>
                                             {repo.name}</p>
                                     </div>
                                     
@@ -197,25 +160,35 @@ const Create=()=>{
                         </div>
                         
                         :<div className="gits">
-                            <button className="githubBtn" onClick={handleGitHub}>
+                            {/* <button className="githubBtn" onClick={handleGitHub}>
                                 <span className="hubBadge"><DiGithubBadge/></span>
                                  GitHub
                             </button>
                             <button className="gitlabBtn">
                                 <span className="labBadge"><FiGitlab/></span>
                                 GitLab
-                            </button>
+                            </button> */}
+                            <div className="loaderWrapper">
+                                <div className="loader">
+                            
+                                </div>
+                                <p className="fetch">Fetching Your Repos...</p>
+                                <p className="might">This might take a few minutes</p>
+                            </div>
                         </div>
                         }
                         
                     </div>
                 </div>
             </div>
+
+            <Footer/>
             <style jsx>{`
                 .main{
                     display:flex;
                     justify-content:center;
                     padding-top:50px;
+                    margin-bottom:100px;
                 }
                 .mainWrapper{
                     width:75%;
@@ -266,6 +239,22 @@ const Create=()=>{
                     cursor:pointer;
                     
                 }
+                .loader {
+                    border: 16px solid #20232A; /* Light grey */
+                    border-top: 16px solid #3498db; /* Blue */
+                    border-radius: 50%;
+                    width: 100px;
+                    height: 100px;
+                    animation: spin 2s linear infinite;
+                }
+                .fetch{
+                    font-weight:bold;
+                    
+                }
+                .might{
+                    font-weight:bold;
+                    font-size:12px;
+                }
                 .githubBtn{
                     background-color:#1B1F23;
                 }
@@ -314,6 +303,11 @@ const Create=()=>{
                 }
                 .username{
                     color:#969696;
+                }
+
+                @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
                 }
             `}</style>
         </div>

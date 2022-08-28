@@ -3,7 +3,7 @@
 
 const Index=()=>{
     return(
-        <div className="Index container">
+        <div className="Index">
             <div className="first border">
                 <div className="intro">
                     <h1>ProJits.com</h1>
@@ -11,7 +11,6 @@ const Index=()=>{
                     <h4>You get 5 sites per account.Completely free</h4>
                     <div className="buttons">
                         <button className="register"><a href="/register">Get Started</a></button>
-                        <button><a href="/tutorials">Tutorials</a></button>
                     </div>
 
                 </div>
@@ -21,15 +20,13 @@ const Index=()=>{
             <style jsx>
                 {`
                      .first{
-                       display:grid;
-                       grid-template-columns:60% 40%;
                        padding:50px;
                        background-color:#282C34;
                        color:white;
                        height:480px;
                     }
                    .intro{
-
+                        text-align:center;
                     }
                     .intro h1{
                         font-size:2.4em;
@@ -46,14 +43,14 @@ const Index=()=>{
                     }
                     .buttons{
                         display:flex;
-                        justify-content:flex-start;
+                        justify-content:center;
                     }
                     button{
                         border:none;
                         outline:none;
                         border-radius:5px;
                         height:50px;
-                        width:30%;
+                        width:20%;
                         margin:10px;
                         cursor:pointer;
                     }
@@ -75,8 +72,7 @@ const Index=()=>{
 
                     @media only screen and (max-width: 800px) {
                         .first{
-                            display:grid;
-                            grid-template-columns:80% 20%;
+                            
                         }
                     }
 

@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import { useState } from 'react'
 import { useRouter } from "next/router"
+import Footer from "../components/Footer";
 
 
 const Register=()=>{
@@ -75,7 +76,7 @@ const handleSubmit=async(e)=>{
       <Navbar/>
       <div className="formWrapper">
         <form action="" onSubmit={handleSubmit}>
-          <h2>Register your account</h2>
+          <h2>Sign Up</h2>
           {err?<div className="errorMessage">
                         <p>{err}</p>
                     </div>:null}
@@ -89,47 +90,60 @@ const handleSubmit=async(e)=>{
           </div>
           <div>
             <label htmlFor="password">Password</label><br />
-            <input onChange={handleChange} type="text" name="password" required/>
+            <input onChange={handleChange} type="password" name="password" required/>
           </div>
           <div>
             <label htmlFor="confirmPassword">Confirm Password</label><br />
-            <input onChange={handleChange} type="text" name="confirmPassword" required/>
+            <input onChange={handleChange} type="password" name="confirmPassword" required/>
           </div>
           <div className="signUpBtn">
             <button type="submit">Sign Up</button>
           </div>
-          <div>
+          <div className="already">
             <h5>Already have an account? <a href="/login">Login</a></h5>
           </div>
         </form>
       </div>
+      <Footer/>
 
       <style jsx>
         {`
           .formWrapper{
             display:flex;
-            padding-top:50px;
-            padding-bottom:50px;
+            padding-top:40px;
+            padding-bottom:20px;
             justify-content:center;
             background-color:#282C34;
             min-height:400px;
           }
           form{
             background-color:white;
-            width:320px;
-            text-align:center;
+            width:40%;
+            text-align:left;
             border-radius:5px;
+            padding:24px;
+            padding-left:40px;
+            padding-right:40px;
 
           }
           input{
             height:30px;
             outline:none;
-            border:#282C34 2px solid;
-            border-radius:5px;
-            width:80%;
+            border:none;
+            border-bottom:#282C34 2px solid;
+            border-radius:1px;
+            width:100%;
+            margin-bottom:10px;
+            font-size:16px;
+            letter-spacing:2px;
+          }
+          input[type=password]{
+            letter-spacing:3px;
           }
           .signUpBtn{
-            margin:20px;
+            margin-top:15px;
+            display:flex;
+            justify-content:center;
 
           }
           button{
@@ -140,10 +154,21 @@ const handleSubmit=async(e)=>{
             background-color:#282C34;
             border-radius:5px;
             cursor:pointer;
-
+            
+          }
+          button[type=submit]{
+            height:40px;
           }
           a{
             color:#61DAFB;
+          }
+          .already{
+            display:flex;
+            justify-content:center;
+            align-items:start;
+          }
+          label{
+            font-size:12px;
           }
           .errorMessage{
                     background-color: #F2DFDF;

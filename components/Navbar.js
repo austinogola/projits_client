@@ -1,16 +1,32 @@
 import styles from '../styles/Navbar.module.css'
 import {BsCodeSlash} from 'react-icons/bs'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+
 
 
 const Navbar=()=>{
+    // useEffect(()=>{
+    //     const logo=document.querySelector(".Logo")
+    //     const router=useRouter()
+
+
+    // })
+    const router=useRouter()
+    
+    const goHome=()=>{
+        
+        router.push('/')
+    }
     return(
         <div className='Navbar'>
             <nav className='nav'>
-                <div className="Logo">
+                <div className="Logo" onClick={goHome}>
                     <div className='icon'>
-                        <BsCodeSlash style={{fontSize:'2.2em',color:'#61DAFB'}}/>
+                        {/* <BsCodeSlash style={{fontSize:'2.2em',color:'#61DAFB'}}/> */}
                     </div>
-                    <h4>Projits</h4>
+                    <img src="/P(white).png" alt="" className='P-icon'/>
+                    <h4>rojits</h4>
                 </div>
                 <div className='navItems'>
                     <ul>
@@ -38,13 +54,21 @@ const Navbar=()=>{
                     .Logo{
                         display:flex;
                         /* align-items:center; */
+                        cursor:pointer;
                     }
                     .icon{
                         position:relative;
                         top:28px;
                     }
+                    .P-icon{
+                        width:32px;
+                        height:32px;
+                        position:relative;
+                        top:38px;
+                        left:4px;
+                    }
                     .Logo h4{
-                        font-size:24px;
+                        font-size:28px;
                         margin-left:5px;
                         font-family: 'Nunito Sans', sans-serif;
                         font-weight:bold;

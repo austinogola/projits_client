@@ -1,12 +1,11 @@
 
 
-const Step=()=>{
+const Step=(props)=>{
     return(
         <div className="Step">
-            <p className="title">Upload Github Repository</p>
+            <p className="title">{props.title}</p>
             <p className="expl">
-                Head over to GitHub and create a new public repository named username.github.io, 
-                where username is your username (or organization name) on GitHub.
+                
             </p>
             
             <style jsx>
@@ -16,6 +15,7 @@ const Step=()=>{
                         padding-top:3px;
                         padding-left:5px;
                         padding-right:5px;
+                        height:300px;
                         
                         /* font-family:'Roboto', sans-serif; */
                     }
